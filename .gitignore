@@ -8,3 +8,4 @@ vendor/
 models/
 *.log
 .pytest_cache/
+hujjatlar/
