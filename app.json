@@ -1,0 +1,23 @@
+{
+  "slug": "birlik-konvertori",
+  "exe_name": "BirlikKonvertori",
+  "version": "1.0.0",
+  "accent": "#0d9488",
+  "icon_text": "↔",
+  "folder": "Birlik konvertori",
+  "name": {"uz": "Birlik konvertori", "ru": "Конвертер единиц", "en": "Unit Converter"},
+  "description": {
+    "uz": "Qurilish, muhandislik va kundalik hisob-kitoblar uchun o'lchov birliklarini o'tkazuvchi dastur: uzunlik, maydon, hajm, massa, bosim, kuch, harorat va armatura massasi jadvali.",
+    "ru": "Программа перевода единиц измерения для строительства, инженерии и повседневных расчётов: длина, площадь, объём, масса, давление, сила, температура и таблица массы арматуры.",
+    "en": "A unit conversion tool for construction, engineering and everyday calculations: length, area, volume, mass, pressure, force, temperature and a rebar mass table."
+  },
+  "features": {
+    "uz": ["12 kategoriya, 70 dan ortiq birlik", "Natija bir vaqtda barcha birliklarda", "Sotix, gektar, kgk/sm², tk/m² kabi mahalliy birliklar", "Nishablik (%) ↔ gradus", "Armatura massasi kalkulyatori va ma'lumotnoma jadvali", "Hisob-kitoblar tarixi va CSV eksport", "O'zbek, rus, ingliz tillari; yorug' va qorong'i mavzu"],
+    "ru": ["12 категорий, более 70 единиц", "Результат сразу во всех единицах", "Местные единицы: сотка, гектар, кгс/см², тс/м²", "Уклон (%) ↔ градусы", "Калькулятор массы арматуры и справочная таблица", "История расчётов и экспорт в CSV", "Узбекский, русский, английский; светлая и тёмная тема"],
+    "en": ["12 categories, 70+ units", "Result shown in all units at once", "Local units: sotix, hectare, kgf/cm², tf/m²", "Slope (%) ↔ degrees", "Rebar mass calculator and reference table", "Calculation history and CSV export", "Uzbek, Russian, English; light and dark themes"]
+  },
+  "category": "Muhandislik / qurilish",
+  "topics": ["unit-converter", "construction", "engineering"],
+  "min_os": "Windows 10 (1809+) / Windows 11, x64",
+  "build": {"mode": "onefile"}
+}
