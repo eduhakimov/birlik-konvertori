@@ -29,7 +29,7 @@ Qurilish, muhandislik va kundalik hisob-kitoblar uchun o'lchov birliklarini o'tk
 ## O'rnatish
 
 1. [**BirlikKonvertori.exe**](https://github.com/eduhakimov/birlik-konvertori/releases/latest/download/BirlikKonvertori.exe) faylini yuklab oling.
-2. Faylni ishga tushiring — o'rnatish shart emas.
+2. Faylni ishga tushiring, o'rnatish shart emas.
 3. Windows SmartScreen ogohlantirsa: **Batafsil → Baribir ishga tushirish**.
 
 **Tizim talablari:** Windows 10 (1809+) / Windows 11, x64
@@ -64,7 +64,7 @@ A unit conversion tool for construction, engineering and everyday calculations: 
 
 ## Muallif / Author
 
-**Bahtiyorjon Hakimov** (Hakimov Bahtiyorjon Muzaffar o'g'li) — [github.com/eduhakimov](https://github.com/eduhakimov)
+**Bahtiyorjon Hakimov** (Hakimov Bahtiyorjon Muzaffar o'g'li), [github.com/eduhakimov](https://github.com/eduhakimov)
 
 © 2026 Bahtiyorjon Hakimov. Barcha huquqlar himoyalangan. / Все права защищены. / All rights reserved.
 Batafsil: [LICENSE](LICENSE) · Uchinchi tomon komponentlari: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
