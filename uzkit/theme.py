@@ -1,4 +1,4 @@
-﻿"""Zamonaviy yorug' / qorong'i mavzu (Fluent uslubiga yaqin)."""
+"""Zamonaviy yorug' / qorong'i mavzu (Fluent uslubiga yaqin)."""
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QApplication
@@ -58,13 +58,23 @@ def _arrow_files(color: str) -> tuple:
     return up.as_posix(), down.as_posix()
 
 
-def build_qss(mode: str, accent: str) -> str:
-    p = PALETTES[mode]
+def _font() -> str:
+    """app.json "font" — dasturning asosiy shrifti (Windows 10/11 da bor bo'lgani: Segoe UI, Segoe UI Variable
+    Display, Bahnschrift, Calibri, Cambria, Candara, Corbel, Consolas...). Default: Segoe UI."""
+    try:
+        from . import app as appmod
+        return appmod.META.get("font") or "Segoe UI"
+    except Exception:
+        return "Segoe UI"
+
+
+def build_qss(mode: str, accent: str, p: dict = None) -> str:
+    p = p or PALETTES[mode]
     up, down = _arrow_files(p["muted"])
     acc_hover = _shade(accent, 1.12 if mode == "dark" else 0.9)
     acc_press = _shade(accent, 0.8)
     return f"""
-* {{ font-family: "Segoe UI", "Segoe UI Variable", Arial; font-size: 10pt; }}
+* {{ font-family: "{_font()}", "Segoe UI", Arial; font-size: 10pt; }}
 QMainWindow, QDialog {{ background: {p['bg']}; color: {p['text']}; }}
 QWidget {{ color: {p['text']}; }}
 QToolTip {{ background: {p['surface']}; color: {p['text']}; border: 1px solid {p['border']}; padding: 4px; }}
@@ -144,7 +154,12 @@ def apply_theme(app: QApplication, mode: str, accent: str = "#2563eb") -> str:
     """Mavzuni qo'llaydi va haqiqiy rejimni ('light'/'dark') qaytaradi."""
     real = resolve_mode(mode)
     app.setStyle("Fusion")
-    p = PALETTES[real]
+    try:  # app.json "palette": {"light": {...}, "dark": {...}} — dasturga xos fon/sirt ranglari
+        from . import app as appmod
+        over = (appmod.META.get("palette", {}) or {}).get(real, {})
+    except Exception:
+        over = {}
+    p = {**PALETTES[real], **over}
     pal = QPalette()
     pal.setColor(QPalette.Window, QColor(p["bg"]))
     pal.setColor(QPalette.WindowText, QColor(p["text"]))
@@ -162,8 +177,41 @@ def apply_theme(app: QApplication, mode: str, accent: str = "#2563eb") -> str:
     pal.setColor(QPalette.Disabled, QPalette.Text, QColor(p["muted"]))
     pal.setColor(QPalette.Disabled, QPalette.ButtonText, QColor(p["muted"]))
     app.setPalette(pal)
-    app.setStyleSheet(build_qss(real, accent))
+    app.setStyleSheet(build_qss(real, accent, p) + _app_style(real, accent))
     return real
+
+
+def _app_style(mode: str, accent: str) -> str:
+    """Dasturning o'ziga xos uslubi: assets/style.qss (umumiy) va assets/style_dark.qss / style_light.qss.
+
+    Fayllarda {accent}, {bg}, {surface}, {surface2}, {border}, {text}, {muted}, {hover} o'rinbosarlari ishlaydi.
+    Bu har bir dasturga alohida, takrorlanmas ko'rinish berish uchun.
+    """
+    try:
+        from .paths import resource
+        vals = dict(PALETTES[mode])
+        try:
+            from . import app as _a
+            vals.update((_a.META.get("palette", {}) or {}).get(mode, {}))
+        except Exception:
+            pass
+        vals["accent"] = accent
+        try:
+            from . import app as appmod
+            vals.update((appmod.META.get("palette", {}) or {}).get(mode, {}))
+        except Exception:
+            pass
+        out = ""
+        for name in ("style.qss", f"style_{mode}.qss"):
+            p = resource("assets", name)
+            if p.exists():
+                txt = p.read_text(encoding="utf-8")
+                for k, v in vals.items():
+                    txt = txt.replace("{" + k + "}", v)
+                out += "\n" + txt
+        return out
+    except Exception:
+        return ""
 
 
 def colors(mode: str) -> dict:

@@ -1,0 +1,12 @@
+/* Birlik konvertori: muhandislik uslubi. Keskin burchaklar, Bahnschrift shrifti, shkala ranglari. */
+QFrame#Card { border-radius: 4px; }
+QPushButton { border-radius: 3px; padding: 7px 16px; }
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { border-radius: 3px; }
+QLabel#Title { font-size: 19pt; font-weight: 600; }
+QLabel#SectionTitle { font-size: 9pt; font-weight: 700; color: {muted}; }
+QLabel#Result { font-size: 24pt; font-weight: 600; color: {accent}; }
+QListWidget#NavList { padding: 10px 8px; }
+QListWidget#NavList::item { border-radius: 2px; padding: 10px 12px; }
+QListWidget#NavList::item:selected { border-left: 4px solid {accent}; background: {hover}; }
+QTableView, QTableWidget { border-radius: 3px; }
+QHeaderView::section { font-size: 9pt; color: {muted}; }

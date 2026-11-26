@@ -66,7 +66,7 @@ class ConverterPage(QWidget):
 
         res_row = QHBoxLayout()
         self.result = QLabel("—")
-        self.result.setObjectName("Title")
+        self.result.setObjectName("Result")
         self.result.setTextInteractionFlags(Qt.TextSelectableByMouse)
         res_row.addWidget(self.result, 1)
         self.copy_btn = QPushButton(tr("copy_result"))

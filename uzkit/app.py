@@ -37,9 +37,9 @@ _LOG_FILE = None
 
 
 def load_meta() -> dict:
-    """app.json — dastur nomi, versiyasi, rangi va h.k."""
+    """app.json â€” dastur nomi, versiyasi, rangi va h.k."""
     p = resource("app.json")
-    return json.loads(p.read_text(encoding="utf-8"))
+    return json.loads(p.read_text(encoding="utf-8-sig"))
 
 
 def app_name() -> str:
@@ -102,7 +102,7 @@ def run(window_cls, meta: dict = None) -> int:
     app.setOrganizationName("BahtiyorSoft")
     app.setApplicationName(slug)
     app.setApplicationVersion(META.get("version", "1.0.0"))
-    app.setFont(QFont("Segoe UI", 10))
+    app.setFont(QFont(META.get("font") or "Segoe UI", 10))
 
     SETTINGS = Settings(slug)
     i18n.set_language(_arg("--lang") or SETTINGS.get("language", i18n.DEFAULT_LANG))

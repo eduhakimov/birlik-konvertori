@@ -1,10 +1,10 @@
-# Unit Converter — user guide
+# Unit Converter: user guide
 
 ## Converter
 1. Choose a **category**: length, area, pressure, temperature and more.
 2. Type a number in **Value**. A dot or a comma both work as the decimal separator.
 3. Choose the **From** and **To** units. The result appears instantly.
-4. **⇅ Swap** exchanges the two units.
+4. **Swap** exchanges the two units.
 5. The table below shows the value in **every unit** of the category.
 6. **Precision** sets the number of decimal places.
 7. **Copy result** puts the result on the clipboard. **Save to history** adds it to the History page.

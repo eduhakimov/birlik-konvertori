@@ -1,12 +1,12 @@
-# Birlik konvertori — qo'llanma
+# Birlik konvertori: qo'llanma
 
 ## Konvertor
 1. **Kategoriya**ni tanlang: uzunlik, maydon, bosim, harorat va boshqalar.
 2. **Qiymat** maydoniga son yozing. Kasr uchun nuqta yoki vergul ishlatish mumkin.
 3. **Qaysi birlikdan** va **Qaysi birlikka**ni tanlang. Natija darhol chiqadi.
-4. **⇅ Almashtirish** tugmasi birliklarni o'rnini almashtiradi.
+4. **Almashtirish** tugmasi birliklarni o'rnini almashtiradi.
 5. Pastdagi jadvalda qiymat shu kategoriyaning **barcha birliklarida** ko'rsatiladi.
-6. **Aniqlik** — verguldan keyingi xonalar soni.
+6. **Aniqlik**: verguldan keyingi xonalar soni.
 7. **Natijani nusxalash** natijani buferga oladi. **Tarixga saqlash** uni "Tarix" bo'limiga yozadi.
 
 Maxsus birliklar: sotix (100 m²), gektar, kgk/sm², tk/m², nishablik foizi (%).
