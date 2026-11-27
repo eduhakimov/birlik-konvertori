@@ -1,5 +1,7 @@
 """Asosiy oyna: konvertor, armatura jadvali, tarix."""
 import csv
+import math
+import os
 from datetime import datetime
 
 from PySide6.QtCore import Qt
@@ -9,7 +11,8 @@ from PySide6.QtWidgets import (QAbstractItemView, QComboBox, QDoubleSpinBox, QFi
                                QPushButton, QSpinBox, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 from uzkit.i18n import language, register, tr
-from uzkit.widgets import Card, header, primary_button
+from uzkit.paths import documents_dir
+from uzkit.widgets import Card, error, header, primary_button
 from uzkit.window import BaseMainWindow
 
 from .strings import STRINGS
@@ -19,7 +22,17 @@ register(STRINGS)
 
 
 def _parse(text: str) -> float:
-    return float(text.replace(" ", "").replace(",", "."))
+    v = float(text.replace(" ", "").replace(" ", "").replace(",", "."))
+    if not math.isfinite(v):
+        raise ValueError(text)
+    return v
+
+
+def _int_setting(v, default: int, lo: int, hi: int) -> int:
+    try:
+        return min(max(int(v), lo), hi)
+    except (TypeError, ValueError):
+        return default
 
 
 class ConverterPage(QWidget):
@@ -47,7 +60,7 @@ class ConverterPage(QWidget):
         self.swap = QPushButton(tr("swap"))
         self.prec = QSpinBox()
         self.prec.setRange(0, 12)
-        self.prec.setValue(win.settings.get("precision", 6))
+        self.prec.setValue(_int_setting(win.settings.get("precision", 6), 6, 0, 12))
         g.addWidget(QLabel(tr("category")), 0, 0)
         g.addWidget(self.cat, 1, 0)
         g.addWidget(QLabel(tr("value")), 0, 1)
@@ -136,7 +149,12 @@ class ConverterPage(QWidget):
             return
         p = self.prec.value()
         src = self.src.currentData()
-        r = convert(key, v, src, self.dst.currentData())
+        try:
+            r = convert(key, v, src, self.dst.currentData())
+        except (OverflowError, ValueError, ZeroDivisionError):
+            self.result.setText(tr("invalid_number"))
+            self.table.setRowCount(0)
+            return
         self.result.setText(f"{fmt(r, p)}  {self.dst.currentText()}")
         units = CATEGORIES[key][1]
         self.table.setRowCount(len(units))
@@ -146,11 +164,22 @@ class ConverterPage(QWidget):
             it.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
             self.table.setItem(i, 1, it)
 
+    def _valid(self) -> bool:
+        try:
+            _parse(self.value.text())
+        except ValueError:
+            return False
+        return self.result.text() != tr("invalid_number")
+
     def _copy(self):
+        if not self._valid():
+            return
         QGuiApplication.clipboard().setText(self.result.text().split("  ")[0])
         self.win.status(tr("copied"))
 
     def _to_history(self):
+        if not self._valid():
+            return
         line = f"{self.value.text()} {self.src.currentText()} = {self.result.text()}"
         self.win.history.add(line)
 
@@ -217,6 +246,10 @@ class HistoryPage(QWidget):
         self.list = QListWidget()
         self.list.setAlternatingRowColors(True)
         lay.addWidget(self.list, 1)
+        self.empty = QLabel(tr("history_empty"))
+        self.empty.setObjectName("Muted")
+        self.empty.setAlignment(Qt.AlignCenter)
+        lay.addWidget(self.empty, 1)
         row = QHBoxLayout()
         row.addStretch(1)
         exp = QPushButton(tr("export_csv"))
@@ -224,30 +257,50 @@ class HistoryPage(QWidget):
         row.addWidget(exp)
         row.addWidget(clr)
         lay.addLayout(row)
+        self.exp_btn, self.clr_btn = exp, clr
         exp.clicked.connect(self._export)
         clr.clicked.connect(self._clear)
-        for line in win.settings.get("history", []):
-            self.list.addItem(line)
+        saved = win.settings.get("history", [])
+        for line in saved if isinstance(saved, list) else []:
+            if isinstance(line, str):
+                self.list.addItem(line)
+        self._update_empty()
+
+    def _update_empty(self):
+        has = self.list.count() > 0
+        self.list.setVisible(has)
+        self.empty.setVisible(not has)
+        self.exp_btn.setEnabled(has)
+        self.clr_btn.setEnabled(has)
 
     def add(self, line: str):
         stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
         self.list.insertItem(0, f"{stamp}   {line}")
         items = [self.list.item(i).text() for i in range(min(self.list.count(), 500))]
         self.win.settings.set("history", items)
+        self._update_empty()
         self.win.status(tr("done"))
 
     def _clear(self):
         self.list.clear()
         self.win.settings.set("history", [])
+        self._update_empty()
 
     def _export(self):
-        p, _ = QFileDialog.getSaveFileName(self, tr("export_csv"), "tarix.csv", "CSV (*.csv)")
+        p, _ = QFileDialog.getSaveFileName(self, tr("export_csv"), os.path.join(str(documents_dir()), "tarix.csv"),
+                                           "CSV (*.csv)")
         if not p:
             return
-        with open(p, "w", newline="", encoding="utf-8-sig") as f:
-            w = csv.writer(f, delimiter=";")
-            for i in range(self.list.count()):
-                w.writerow([self.list.item(i).text()])
+        try:
+            with open(p, "w", newline="", encoding="utf-8-sig") as f:
+                w = csv.writer(f, delimiter=";")
+                for i in range(self.list.count()):
+                    w.writerow([self.list.item(i).text()])
+        except OSError as ex:
+            from uzkit.app import log_exception
+            log_exception(ex)
+            error(self, tr("err_write"))
+            return
         self.win.status(tr("done"))
 
 

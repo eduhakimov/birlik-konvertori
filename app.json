@@ -1,7 +1,7 @@
 {
   "slug": "birlik-konvertori",
   "exe_name": "BirlikKonvertori",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "accent": "#2a9d8f",
   "font": "Bahnschrift",
   "palette": {"light": {"bg": "#f3f2ee", "surface": "#fbfaf7", "surface2": "#ecebe5", "border": "#d6d3ca", "text": "#1d2328", "muted": "#66706f", "hover": "#e6e4dc"}, "dark": {"bg": "#151b20", "surface": "#1c242a", "surface2": "#232d34", "border": "#33404a", "text": "#e6ebee", "muted": "#93a1a8", "hover": "#2a353d"}},

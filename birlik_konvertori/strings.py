@@ -36,4 +36,9 @@ STRINGS = {
     "history_empty": {"uz": "Tarix bo'sh", "ru": "История пуста", "en": "History is empty"},
     "copy_result": {"uz": "Natijani nusxalash", "ru": "Копировать результат", "en": "Copy result"},
     "export_csv": {"uz": "CSV ga eksport", "ru": "Экспорт в CSV", "en": "Export to CSV"},
+    "err_write": {
+        "uz": "Faylni yozib bo'lmadi. U boshqa dasturda ochiq bo'lishi mumkin.",
+        "ru": "Не удалось записать файл. Возможно, он открыт в другой программе.",
+        "en": "Could not write the file. It may be open in another program.",
+    },
 }
