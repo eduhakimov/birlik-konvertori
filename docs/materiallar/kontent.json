@@ -1,0 +1,411 @@
+{
+  "nom": "Birlik konvertori",
+  "muallif": "Hakimov Bahtiyorjon",
+  "maqola": {
+    "udk": "004.42:006.91",
+    "sarlavha": {
+      "uz": "Qurilish va muhandislik hisob-kitoblari uchun o‘lchov birliklarini o‘tkazishning oflayn dasturiy vositasi: birliklar modeli, arxitektura va amalga oshirish",
+      "ru": "Офлайн-программное средство перевода единиц измерения для строительных и инженерных расчётов: модель единиц, архитектура и реализация",
+      "en": "An offline software tool for converting units of measurement in construction and engineering calculations: unit model, architecture and implementation"
+    },
+    "annotatsiya": {
+      "uz": "Maqolada qurilish, muhandislik va kundalik hisob-kitoblarda uchraydigan o‘lchov birliklarini o‘zaro o‘tkazish uchun ishlab chiqilgan “Birlik konvertori” ish stoli dasturi tavsiflanadi. Dastur Python 3.12 va PySide6 (Qt 6) asosida yaratilgan, internet aloqasisiz ishlaydi va 12 ta kategoriyada 70 ta birlikni qamrab oladi, jumladan sotix, gektar, kgk/sm², tk/m² kabi mahalliy amaliyotda keng qo‘llanadigan birliklarni. Birliklar asosiy birlikka nisbatan ko‘paytuvchilar jadvali ko‘rinishida modellashtirilgan, harorat va nishablik foizi uchun alohida chiziqli bo‘lmagan o‘tkazish qoidalari amalga oshirilgan. Dasturda armatura massasini hisoblash moduli, ma’lumotnoma jadvali, hisob-kitoblar tarixi va uni CSV formatiga eksport qilish imkoniyati mavjud. Ishonchlilik 46 ta avtomatik test bilan tekshirilgan.",
+      "ru": "В статье описывается настольная программа «Конвертер единиц», предназначенная для взаимного перевода единиц измерения, встречающихся в строительных, инженерных и повседневных расчётах. Программа разработана на Python 3.12 и PySide6 (Qt 6), работает без подключения к интернету и охватывает 70 единиц в 12 категориях, включая широко применяемые в местной практике сотку, гектар, кгс/см² и тс/м². Единицы смоделированы как таблица множителей относительно базовой единицы, для температуры и уклона в процентах реализованы отдельные нелинейные правила перевода. Программа содержит модуль расчёта массы арматуры, справочную таблицу, историю расчётов и экспорт истории в формат CSV. Надёжность проверена 46 автоматическими тестами.",
+      "en": "The article describes the desktop application “Unit Converter”, designed for converting units of measurement that occur in construction, engineering and everyday calculations. The application is built with Python 3.12 and PySide6 (Qt 6), works without an internet connection and covers 70 units in 12 categories, including units widely used in local practice such as the sotix, hectare, kgf/cm² and tf/m². Units are modelled as a table of factors relative to a base unit, while temperature and slope in percent are handled by separate non-linear conversion rules. The application includes a rebar mass calculator, a reference table, a calculation history and export of that history to CSV. Its reliability is checked by 46 automated tests."
+    },
+    "kalit": {
+      "uz": ["o‘lchov birliklari", "birliklarni o‘tkazish", "qurilish hisob-kitoblari", "armatura massasi", "nishablik", "PySide6", "oflayn dastur"],
+      "ru": ["единицы измерения", "перевод единиц", "строительные расчёты", "масса арматуры", "уклон", "PySide6", "офлайн-программа"],
+      "en": ["units of measurement", "unit conversion", "construction calculations", "rebar mass", "slope", "PySide6", "offline application"]
+    },
+    "bolimlar": [
+      {
+        "sarlavha": "Kirish",
+        "matn": [
+          "O‘lchov birliklari bilan ishlash muhandislik, qurilish, loyihalash va ta’lim jarayonining ajralmas qismidir. Loyiha hujjatlarida, me’yoriy adabiyotlarda, uskunalar pasportlarida va xorijiy katalog ma’lumotlarida bir xil fizik kattalik turli birliklarda ifodalanadi. Masalan, beton yoki grunt mustahkamligi MPa, kgk/sm² yoki tk/m² orqali, nasos va kompressorlar bosimi bar, atmosfera yoki psi orqali, quvur va armatura o‘lchamlari millimetr yoki dyuymda beriladi. Yer maydonlari esa amaliyotda ko‘pincha sotix va gektarda hisoblanadi.",
+          "Bunday sharoitda birliklarni qo‘lda o‘tkazish vaqt talab qiladi va xatolar ehtimolini oshiradi. Ko‘paytuvchini noto‘g‘ri eslab qolish, o‘nlik tartibini adashtirish yoki chiziqli bo‘lmagan bog‘lanishni (masalan, harorat shkalalari yoki nishablik foizi bilan burchak orasidagi munosabatni) oddiy ko‘paytirish deb qabul qilish natijaning bir necha marta farq qilishiga olib keladi. Qurilishda bunday xatolar materiallar hajmini noto‘g‘ri baholash, smeta va buyurtmalarda nomuvofiqlikka sabab bo‘lishi mumkin.",
+          "O‘zbekiston Respublikasida “Raqamli O‘zbekiston – 2030” strategiyasi doirasida iqtisodiyot tarmoqlari, jumladan qurilish sohasi va ta’lim tizimini raqamlashtirish davlat siyosatining ustuvor yo‘nalishlaridan biri sifatida belgilangan. Raqamlashtirishning amaliy darajadagi muhim tarkibiy qismi mutaxassisning kundalik ish jarayonida foydalanadigan, mahalliy tilda ishlaydigan va ishonchli natija beradigan dasturiy vositalardir.",
+          "Ushbu maqolada muallif tomonidan ishlab chiqilgan “Birlik konvertori” dasturi ilmiy-amaliy yechim sifatida ko‘rib chiqiladi. Dastur o‘zbek, rus va ingliz tillarida ishlaydi, internet talab qilmaydi va qurilish amaliyotiga xos birliklarni, shuningdek armatura massasini hisoblash vositasini bitta oynada birlashtiradi. Maqolaning maqsadi dasturning birliklar modeli, arxitekturasi, amalga oshirilgan funksiyalari va sinov natijalarini tavsiflash hamda uning cheklovlari va rivojlantirish istiqbollarini muhokama qilishdan iborat."
+        ]
+      },
+      {
+        "sarlavha": "Muammoning qo‘yilishi va mavjud yechimlar tahlili",
+        "matn": [
+          "O‘lchov birliklarini o‘tkazish masalasi formal jihatdan oddiy ko‘rinsa-da, amaliyotda bir nechta talablarni birgalikda qondirishni taqozo etadi: o‘tkazish koeffitsiyentlarining aniqligi, chiziqli bo‘lmagan bog‘lanishlarni to‘g‘ri qayta ishlash, natijani o‘qish uchun qulay shaklda ko‘rsatish, mahalliy birliklarni qo‘llab-quvvatlash va foydalanuvchi interfeysining ona tilida bo‘lishi.",
+          "Mavjud yechimlarni umumiy holda bir nechta guruhga ajratish mumkin.",
+          "- Onlayn konvertorlar va qidiruv tizimlariga o‘rnatilgan hisoblagichlar. Ular qulay, biroq internet aloqasini talab qiladi, qurilish maydonchasi yoki aloqa cheklangan xonalarda har doim ham mavjud bo‘lmaydi. Ko‘pchiligida mahalliy birliklar (sotix, kgk/sm², tk/m²) bo‘lmasligi yoki boshqa nom bilan berilishi mumkin.",
+          "- Mobil ilovalar. Ular tezkor foydalanish uchun qulay, ammo kompyuterda loyiha hujjatlari bilan ishlayotgan mutaxassis uchun qurilmalar o‘rtasida o‘tish noqulaylik tug‘diradi.",
+          "- Elektron jadvallar (masalan, jadval protsessorlaridagi o‘zgartirish funksiyalari) va muhandislik hisob-kitob paketlari. Ular kuchli vosita, ammo foydalanuvchidan funksiya sintaksisi va birlik belgilarini bilishni talab qiladi.",
+          "- Ma’lumotnoma jadvallari va qo‘lda hisoblash. Bu usul an’anaviy bo‘lib, inson omili bilan bog‘liq xatolarga eng ko‘p moyil.",
+          "Shu sababli quyidagi masala qo‘yildi: Windows operatsion tizimi uchun internetga bog‘liq bo‘lmagan, o‘rnatishni talab qilmaydigan, o‘zbek tilidagi interfeysga ega, qurilish amaliyotida uchraydigan birliklarni qamrab oluvchi va qiymatni bir vaqtning o‘zida tanlangan kategoriyaning barcha birliklarida ko‘rsatadigan dasturiy vosita yaratish. Qo‘shimcha talab sifatida armatura massasini diametr va uzunlik bo‘yicha hisoblash hamda bajarilgan hisob-kitoblarni saqlab, keyinchalik hujjatlashtirish uchun eksport qilish imkoniyati belgilandi."
+        ]
+      },
+      {
+        "sarlavha": "Tadqiqot metodologiyasi va dasturiy arxitektura",
+        "matn": [
+          "Dastur Python 3.12 dasturlash tilida yozilgan, grafik interfeys Qt 6 kutubxonasining rasmiy Python bog‘lamasi bo‘lgan PySide6 yordamida qurilgan. Tarqatish uchun dastur PyInstaller vositasi bilan bitta bajariladigan BirlikKonvertori.exe fayliga yig‘iladi, shuning uchun foydalanuvchi kompyuterida Python yoki qo‘shimcha kutubxonalarni o‘rnatish talab etilmaydi. Hisoblash qismi faqat Python standart kutubxonasidan (math, csv, datetime) foydalanadi.",
+          "Loyiha uchta mantiqiy qatlamdan iborat:",
+          "- **Birliklar modeli** (units.py moduli). Bu modul interfeysdan to‘liq mustaqil bo‘lib, barcha kategoriyalar, birliklar, ularning uch tildagi nomlari, o‘tkazish funksiyasi, armatura hisobi va sonlarni formatlash funksiyasini o‘z ichiga oladi. Interfeysdan ajratilganligi uni avtomatik testlar bilan alohida tekshirish imkonini beradi.",
+          "- **Interfeys qatlami** (window.py moduli). Unda uchta sahifa amalga oshirilgan: “Konvertor”, “Armatura jadvali” va “Tarix”. Sahifalar chap tomondagi navigatsiya paneli orqali almashtiriladi.",
+          "- **Umumiy karkas** (uzkit paketi). U asosiy oyna, menyular, uch tilli tarjima tizimi, yorug‘ va qorong‘i mavzular, sozlamalarni saqlash, jurnal yuritish va kutilmagan xatolarni ushlash vazifalarini bajaradi. Interfeys matnlari strings.py faylida uz, ru va en kalitlari bilan saqlanadi.",
+          "Birliklar modelining asosiy g‘oyasi har bir kategoriya uchun bitta asosiy birlik tanlash va qolgan barcha birliklarni shu asosiy birlikka nisbatan ko‘paytuvchi orqali ifodalashdan iborat. Masalan, uzunlik uchun asosiy birlik metr, maydon uchun m², hajm uchun m³, massa uchun kilogramm, bosim uchun paskal, kuch uchun nyuton, energiya uchun joul. Bunda x qiymatni a birlikdan b birlikka o‘tkazish ikki bosqichda bajariladi: avval qiymat a birlikning ko‘paytuvchisiga ko‘paytirilib asosiy birlikka keltiriladi, so‘ngra b birlikning ko‘paytuvchisiga bo‘linadi. Bu yondashuv n ta birlik uchun n×n o‘tkazish koeffitsiyentini saqlash o‘rniga faqat n ta koeffitsiyent saqlashga imkon beradi va yangi birlik qo‘shishni bitta qator bilan cheklaydi.",
+          "Ko‘paytuvchilar xalqaro miqyosda qabul qilingan aniq qiymatlar asosida berilgan: dyuym 0,0254 m, fut 0,3048 m, yard 0,9144 m, mil 1609,344 m, funt 0,45359237 kg, atmosfera 101325 Pa, kgk/sm² 98066,5 Pa, tk/m² 9806,65 Pa, kilogramm-kuch 9,80665 N, kVt·soat 3,6·10⁶ J, kaloriya 4,1868 J. Sotix 100 m² ga, gektar 10000 m² ga teng qilib olingan. Ma’lumot hajmi kategoriyasida KB, MB, GB va TB ikkilik qadam bilan, ya’ni 1024 ga ko‘paytirib hisoblanadi.",
+          "Ikki kategoriya chiziqli ko‘paytuvchi bilan ifodalanmaydi va ular uchun alohida qoidalar amalga oshirilgan. Harorat shkalalari siljishga ega bo‘lgani uchun o‘tkazish oraliq birlik sifatida Selsiy shkalasi orqali bajariladi: Farengeyt uchun (F − 32)·5/9, Kelvin uchun K − 273,15 formulalari qo‘llanadi va teskari yo‘nalishda mos formulalar ishlatiladi. Burchak kategoriyasida gradus, radian va grad chiziqli birliklar, nishablik foizi esa tangens orqali bog‘langan: nishablik foizidan gradusga o‘tishda arktangens (p/100), teskari yo‘nalishda tangens (α)·100 hisoblanadi. Bunday yechim qurilishda tom, rampa va yo‘l nishabliklarini burchakka va aksincha o‘tkazishda talab qilinadi.",
+          "Natijani ko‘rsatish uchun alohida formatlash funksiyasi ishlab chiqilgan. U ortiqcha nollarni olib tashlaydi, minglik guruhlarni bo‘sh joy bilan ajratadi, juda katta (10¹² va undan katta) yoki juda kichik (10⁻⁶ dan kichik) qiymatlarni ilmiy yozuvda chiqaradi. Kasr xonalari soni (aniqlik) foydalanuvchi tomonidan 0 dan 12 gacha tanlanadi.",
+          "Kiritilgan qiymatni tahlil qilishda bo‘sh joylar, jumladan bo‘linmas bo‘sh joy, olib tashlanadi, vergul nuqtaga almashtiriladi, shu sababli “1,5” va “1 500” kabi yozuvlar to‘g‘ri qabul qilinadi. Cheksiz yoki son bo‘lmagan qiymatlar (masalan, juda katta daraja ko‘rsatkichli yozuv) rad etiladi. O‘tkazish vaqtida yuzaga kelishi mumkin bo‘lgan to‘lib ketish, qiymat xatosi va nolga bo‘lish istisnolari ushlanadi, bu holatlarda foydalanuvchiga “Son noto‘g‘ri kiritildi” xabari ko‘rsatiladi va dastur ishdan chiqmaydi.",
+          "Ko‘p tillilik uzkit paketidagi tarjima tizimi orqali ta’minlanadi. Har bir interfeys matni kalit bo‘yicha uchta tilda saqlanadi, birliklar va kategoriyalar nomlari esa bevosita birliklar modelida uz, ru va en variantlari bilan berilgan. Shu sababli birlik nomi har bir tilda mahalliy an’anaga mos yoziladi: masalan, kilogramm-kuch o‘zbekchada “kgk”, ruschada “кгс”, inglizchada “kgf” ko‘rinishida. Tarjimalarning to‘liqligi alohida avtomatik test bilan tekshiriladi. Interfeys mavzusi (yorug‘, qorong‘i yoki tizim bo‘yicha) Qt uslublar jadvali orqali qo‘llanadi, urg‘u rangi dastur metama’lumotlarida belgilangan.",
+          "Metodologik nuqtai nazardan ishlab chiqish jarayonida hisoblash mantig‘ini birinchi navbatda ma’lumotnoma qiymatlari bilan tekshiriladigan mustaqil modul sifatida yaratish, so‘ngra unga interfeys qatlamini ulash tamoyiliga amal qilingan. Har bir yangi birlik uchun ikki turdagi tekshiruv qo‘llanadi: ma’lum ma’lumotnoma qiymatiga mos kelish va kategoriyaning barcha birliklari bilan o‘zaro borib-qaytish o‘tkazishida boshlang‘ich qiymatning tiklanishi. Ikkinchi tekshiruv ko‘paytuvchilardan birida xato bo‘lsa ham uni aniqlash imkonini beradi.",
+          "Ma’lumotlar oqimi quyidagicha tashkil etilgan: foydalanuvchi kategoriya, qiymat va birliklarni tanlaydi; har bir o‘zgarishda interfeys qatlami birliklar modelidagi o‘tkazish funksiyasini chaqiradi; natija asosiy maydonda va “Barcha birliklarda” jadvalida ko‘rsatiladi; foydalanuvchi xohlasa natijani tarixga yozadi, tarix esa sozlamalar fayliga saqlanadi va CSV faylga eksport qilinadi.",
+          "Oflayn ishlash va xavfsizlik nuqtai nazaridan dastur tarmoq bilan hech qanday aloqa o‘rnatmaydi. Sozlamalar va tarix foydalanuvchi profilidagi %APPDATA%\\BahtiyorSoft\\birlik-konvertori papkasidagi settings.json faylida saqlanadi. Faylga yozish atomik usulda bajariladi: ma’lumot avval vaqtinchalik faylga yoziladi, so‘ngra asosiy fayl o‘rniga qo‘yiladi, bu yozish jarayonida uzilish bo‘lganda faylning buzilishini oldini oladi. Agar sozlamalar fayli buzilgan bo‘lsa, u .broken.json kengaytmali zaxira nomiga o‘zgartiriladi va dastur toza sozlamalar bilan ishga tushadi. Sozlamadagi noto‘g‘ri turdagi qiymatlar (masalan, aniqlik o‘rnida matn) tekshirilib, standart qiymat bilan almashtiriladi. Kutilmagan xatolar shu papkadagi log.txt jurnal fayliga yoziladi; jurnal hajmi 1 MB bilan cheklangan va ikkita oldingi nusxa saqlanadi."
+        ]
+      },
+      {
+        "sarlavha": "Amalga oshirish va asosiy funksiyalar",
+        "matn": [
+          "Dastur oynasi yuqori menyu qatori (“Fayl”, “Sozlamalar”, “Yordam”), chap navigatsiya paneli, ish maydoni va holat qatoridan iborat. Navigatsiya panelida uchta bo‘lim mavjud: “Konvertor”, “Armatura jadvali” va “Tarix”.",
+          "**Konvertor sahifasi.** Sahifaning yuqori qismida “Kategoriya”, “Qiymat” va “Aniqlik (xona)” maydonlari, ulardan pastda “Qaysi birlikdan” va “Qaysi birlikka” ro‘yxatlari hamda “Almashtirish” tugmasi joylashgan. Natija katta shrift bilan urg‘u rangida ko‘rsatiladi. Uning yonida “Natijani nusxalash” va “Tarixga saqlash” tugmalari bor. Natija har bir o‘zgarishda, alohida “hisoblash” tugmasini bosmasdan darhol yangilanadi.",
+          "Dasturda quyidagi 12 ta kategoriya va 70 ta birlik amalga oshirilgan:",
+          "- Uzunlik (9 ta): millimetr, santimetr, detsimetr, metr, kilometr, dyuym, fut, yard, mil.",
+          "- Maydon (8 ta): mm², sm², m², sotix, gektar, km², ft², akr.",
+          "- Hajm (7 ta): millilitr, litr, sm³, dm³, m³, gallon (AQSh), ft³.",
+          "- Massa (6 ta): gramm, kilogramm, sentner, tonna, funt, unsiya.",
+          "- Zichlik (4 ta): kg/m³, t/m³, g/sm³, kg/l.",
+          "- Bosim / kuchlanish (9 ta): paskal, kPa, MPa (N/mm²), bar, atmosfera, kgk/sm², tk/m², psi, mm simob ustuni.",
+          "- Kuch (6 ta): nyuton, kilonyuton, meganyuton, kilogramm-kuch, tonna-kuch, funt-kuch.",
+          "- Tezlik (4 ta): m/s, km/soat, mil/soat, tugun.",
+          "- Burchak (4 ta): gradus, radian, grad, nishablik (%).",
+          "- Harorat (3 ta): Selsiy, Farengeyt, Kelvin.",
+          "- Energiya / quvvat (5 ta): joul, kJ, kVt·soat, kaloriya, kkal.",
+          "- Ma’lumot hajmi (5 ta): bayt, KB, MB, GB, TB.",
+          "Sahifaning pastki qismidagi “Barcha birliklarda” jadvali tanlangan kategoriyaning har bir birligi uchun natijani bir vaqtda ko‘rsatadi. Bu yechim foydalanuvchiga maqsad birlikni oldindan tanlamasdan qiymatning barcha ifodalarini taqqoslash imkonini beradi. Jadval tahrirlanmaydi, qatorlar navbatma-navbat rang bilan ajratiladi.",
+          "“Almashtirish” tugmasi manba va maqsad birliklarining o‘rnini almashtiradi. “Natijani nusxalash” tugmasi natijaning faqat son qismini almashinuv buferiga oladi, bu uni boshqa hujjat yoki jadvalga qo‘yishni osonlashtiradi. Oxirgi tanlangan kategoriya va aniqlik qiymati sozlamalarda saqlanadi va dastur keyingi safar ochilganda tiklanadi.",
+          "**Armatura jadvali sahifasi.** Bu sahifa “Armatura massasi” sarlavhasi ostida armatura sterjenlari massasini hisoblaydi. Hisob po‘latning 7850 kg/m³ zichligi va doiraviy kesim formulasi asosida bajariladi: bir metr massasi m₁ = π·d²/4·7850 (d metrda), umumiy massa esa m₁·L·n ko‘rinishida topiladi, bu yerda L sterjen uzunligi, n esa sterjenlar soni. Foydalanuvchi “Diametr, mm” ro‘yxatidan 6, 8, 10, 12, 14, 16, 18, 20, 22, 25, 28, 32, 36 va 40 mm qiymatlardan birini tanlaydi, “Uzunlik, m” maydoniga uzunlikni (ikki kasr xonasigacha) va “Soni, dona” maydoniga sonini kiritadi. Natija “Umumiy massa” qatorida kilogramm va tonnada ko‘rsatiladi. Standart holatda Ø12 diametr va 11,70 m uzunlik tanlangan.",
+          "Sahifaning pastki qismidagi “Ma’lumotnoma jadvali” har bir diametr uchun kesim yuzasini (mm², bir kasr xonasi bilan) va bir metr massasini (kg, uch kasr xonasi bilan) ko‘rsatadi. Masalan, Ø12 uchun kesim yuzasi 113,1 mm², bir metr massasi 0,888 kg ga teng. Ta’kidlash lozimki, jadvaldagi qiymatlar nazariy formula bo‘yicha hisoblangan, ya’ni davriy profilli armaturaning haqiqiy massasi tegishli standart va ishlab chiqaruvchi ma’lumotlari bilan solishtirilishi kerak.",
+          "**Tarix sahifasi.** “Tarixga saqlash” tugmasi bosilganda joriy hisob-kitob sana va vaqt (YYYY-MM-DD HH:MM ko‘rinishida) bilan birga ro‘yxatning boshiga qo‘shiladi. Tarixda eng ko‘pi 500 ta yozuv saqlanadi. Noto‘g‘ri kiritilgan qiymat tarixga yozilmaydi. Tarix bo‘sh bo‘lsa “Tarix bo‘sh” xabari chiqadi va “CSV ga eksport” hamda “Tozalash” tugmalari faol bo‘lmaydi. Eksportda fayl standart holatda foydalanuvchining “Hujjatlar” papkasida tarix.csv nomi bilan taklif qilinadi; fayl UTF-8 kodlashida (BOM belgisi bilan) va nuqtali vergul ajratgichi bilan yoziladi, bu uni elektron jadvallarda kirill va lotin harflari buzilmagan holda ochishga yordam beradi. Agar faylni yozib bo‘lmasa (masalan, u boshqa dasturda ochiq bo‘lsa), dastur ishdan chiqmaydi va “Faylni yozib bo‘lmadi. U boshqa dasturda ochiq bo‘lishi mumkin.” xabarini ko‘rsatadi.",
+          "**Sozlamalar.** “Sozlamalar” menyusida “Til” (O‘zbekcha, Русский, English) va “Mavzu” (“Tizim bo‘yicha”, “Yorug‘”, “Qorong‘i”) bandlari mavjud. Til o‘zgartirilganda dastur tasdiq so‘rab, qayta ishga tushadi. “Yordam” menyusida “Qo‘llanma” va “Dastur haqida” oynalari joylashgan; qo‘llanma joriy tilda dastur ichidan ochiladi."
+        ],
+        "rasmlar": [
+          {"fayl": "docs/screenshots/1.png", "izoh": "“Konvertor” sahifasi (yorug‘ mavzu): uzunlik kategoriyasida 1 mm qiymat santimetrga o‘tkazilgan, “Barcha birliklarda” jadvalida natija to‘qqizta birlikda ko‘rsatilgan"},
+          {"fayl": "docs/screenshots/2.png", "izoh": "“Armatura jadvali” sahifasi (qorong‘i mavzu): Ø12, 11,70 m uzunlikdagi bitta sterjen uchun umumiy massa 10,387 kg va diametrlar bo‘yicha ma’lumotnoma jadvali"}
+        ]
+      },
+      {
+        "sarlavha": "Sinov va natijalar",
+        "matn": [
+          "Dasturning to‘g‘ri ishlashi pytest freymvorki asosidagi avtomatik testlar bilan tekshiriladi. tests papkasida 13 ta test funksiyasi mavjud bo‘lib, parametrlash hisobiga jami 46 ta test holati bajariladi. Testlar uchta faylga taqsimlangan.",
+          "1. Birliklar modeli testlari fayli (8 ta test): uzunlik, maydon (gektardan sotixga), harorat, bosim (MPa dan kgk/sm² ga), nishablik va gradus o‘rtasidagi o‘tkazishlar; barcha kategoriyalardagi har bir birlik juftligi uchun “borib-qaytish” sinovi, ya’ni qiymatni a dan b ga va yana a ga o‘tkazganda boshlang‘ich qiymatning tiklanishi; armatura bir metr massasining Ø10 va Ø12 uchun ma’lumotnoma qiymatlariga (0,617 va 0,888 kg) mosligi; sonlarni formatlash funksiyasining to‘g‘riligi.",
+          "2. Ssenariy testlari fayli (36 ta holat): 24 ta ma’lumotnoma qiymati bilan solishtirish (masalan, 1 mil = 1,609344 km, 1 atm = 760 mm sim. ust., 1 tk = 9,80665 kN, 100 °C = 212 °F, 45° = 100 % nishablik, 1 kVt·soat = 859,845228 kkal); burchakdan tashqari 11 ta kategoriyaning har biri uchun barcha birliklar juftligi bo‘yicha borib-qaytish sinovi; oyna darajasidagi ssenariy sinovi.",
+          "3. Tutun (smoke) testlari fayli (2 ta test): asosiy oynaning uch tilda xatosiz yaratilishi va tarjima kalitlarining uchala tilda to‘liqligi.",
+          "Ssenariy sinovida dastur buzilgan sozlamalar fayli bilan ishga tushiriladi (aniqlik, tarix va kategoriya o‘rnida noto‘g‘ri turdagi qiymatlar) va oynaning standart qiymatlar bilan to‘g‘ri ochilishi tekshiriladi. So‘ngra bosim kategoriyasida vergulli “1,5” qiymati kiritilib natija tekshiriladi, juda katta qiymat kiritilganda xato xabari chiqishi va bunday qiymat tarixga yozilmasligi, “Almashtirish” tugmasining ishlashi, kirill harfli va apostrofli papka nomiga CSV eksport qilish, yozib bo‘lmaydigan yo‘lda dastur yiqilmasdan xabar berishi hamda tarixni tozalash sinovdan o‘tkaziladi.",
+          "Dastur Windows 10 (1809 va undan keyingi) va Windows 11 x64 operatsion tizimlari uchun mo‘ljallangan. Interfeys o‘zbek, rus va ingliz tillarida mavjud. Eksport formati CSV. Testlar hisoblash aniqligi va interfeys barqarorligini tekshiradi; dasturning ishlash tezligi yoki foydalanuvchilar soni bo‘yicha o‘lchovlar o‘tkazilmagan va maqolada keltirilmaydi."
+        ]
+      },
+      {
+        "sarlavha": "Muhokama",
+        "matn": [
+          "Ishlab chiqilgan vositaning asosiy afzalliklari quyidagilardan iborat. Birinchidan, dastur to‘liq oflayn ishlaydi va o‘rnatishni talab qilmaydi, bu uni aloqa cheklangan joylarda va ta’lim muassasalarining kompyuter sinflarida qo‘llash imkonini beradi. Ikkinchidan, qiymat tanlangan kategoriyaning barcha birliklarida bir vaqtda ko‘rsatiladi, bu taqqoslash va tekshirish ishini tezlashtiradi. Uchinchidan, mahalliy amaliyotga xos sotix, sentner, kgk/sm² va tk/m² kabi birliklar hamda nishablik foizi alohida qo‘llab-quvvatlanadi. To‘rtinchidan, armatura massasi kalkulyatori va ma’lumotnoma jadvali qurilish smetasi va materiallar hisobi bilan bevosita bog‘liq. Beshinchidan, birliklar modeli interfeysdan ajratilgan va avtomatik testlar bilan qoplangan, bu esa yangi birlik qo‘shishda mavjud natijalarning buzilmasligini nazorat qilishga imkon beradi.",
+          "Shu bilan birga, dasturning bir qator cheklovlari mavjud:",
+          "- Armatura massasi nazariy formula bo‘yicha, faqat po‘lat zichligi 7850 kg/m³ deb olingan holda hisoblanadi; boshqa materiallar va boshqa zichlik qiymatlari kiritilmaydi.",
+          "- Nishablik foizi chegaraviy qiymatlarda (90° ga yaqin burchaklarda) tangens funksiyasining tabiati sababli juda katta sonlar beradi; testlarda ham bu birlik uchun borib-qaytish sinovi (-90°; 90°) oralig‘i bilan cheklangan.",
+          "- Ma’lumot hajmi birliklari ikkilik (1024) qadam bilan hisoblanadi; o‘nlik (1000) qadamli birliklar alohida berilmagan.",
+          "- Hajm kategoriyasida faqat AQSh galloni mavjud.",
+          "- Tarix oddiy matn qatorlari ro‘yxati sifatida saqlanadi va CSV faylga bitta ustun ko‘rinishida eksport qilinadi.",
+          "Rivojlantirish istiqbollari sifatida quyidagilarni ko‘rsatish mumkin: armatura hisobini boshqa materiallar va prokat turlari bilan kengaytirish; foydalanuvchi o‘z birligi va koeffitsiyentini qo‘shishi uchun imkoniyat yaratish; ma’lumot hajmi uchun o‘nlik birliklarni qo‘shish; tarixni ustunlarga ajratilgan holda (qiymat, birlik, natija) eksport qilish. Bu yo‘nalishlar mavjud arxitekturada birliklar modeliga yangi yozuvlar qo‘shish va interfeys qatlamini kengaytirish orqali amalga oshirilishi mumkin."
+        ]
+      },
+      {
+        "sarlavha": "Xulosa",
+        "matn": [
+          "Maqolada qurilish, muhandislik va kundalik hisob-kitoblar uchun mo‘ljallangan “Birlik konvertori” dasturining birliklar modeli, arxitekturasi va amalga oshirilgan funksiyalari tavsiflandi. Dastur Python 3.12 va PySide6 asosida yaratilgan, internetsiz ishlaydi, 12 ta kategoriyada 70 ta birlikni, shu jumladan mahalliy birliklar va nishablik foizini qamrab oladi, qiymatni tanlangan kategoriyaning barcha birliklarida bir vaqtda ko‘rsatadi.",
+          "Asosiy birlikka nisbatan ko‘paytuvchilar modeli birliklar sonini kengaytirishni soddalashtiradi, harorat va nishablik uchun alohida qoidalar esa chiziqli bo‘lmagan bog‘lanishlarni to‘g‘ri qayta ishlashni ta’minlaydi. Armatura massasi kalkulyatori, ma’lumotnoma jadvali va CSV eksportli tarix dasturni amaliy qurilish ishlari bilan bog‘laydi. To‘g‘rilik 46 ta avtomatik test holati bilan tekshirilgan.",
+          "Dastur muhandis va texniklar, qurilish sohasidagi mutaxassislar hamda oliy ta’lim muassasalari, kollej va texnikumlarning talabalari uchun amaliy vosita sifatida tavsiya etiladi. Uning manba tarqatmasi va bajariladigan fayli muallifning GitHub sahifasida joylashtirilgan."
+        ]
+      }
+    ],
+    "adabiyotlar": [
+      "O‘zbekiston Respublikasi Prezidentining 2020-yil 5-oktabrdagi PF-6079-son “Raqamli O‘zbekiston – 2030” strategiyasini tasdiqlash va uni samarali amalga oshirish chora-tadbirlari to‘g‘risida”gi Farmoni [Elektron resurs]. – URL: https://lex.uz/docs/5030957 (murojaat sanasi: 27.11.2026).",
+      "Bureau International des Poids et Mesures. The International System of Units (SI). 9th edition. – Sèvres: BIPM, 2019 [Elektron resurs]. – URL: https://www.bipm.org/en/publications/si-brochure (murojaat sanasi: 27.11.2026).",
+      "Thompson A., Taylor B. N. Guide for the Use of the International System of Units (SI). NIST Special Publication 811. – Gaithersburg: National Institute of Standards and Technology, 2008 [Elektron resurs]. – URL: https://www.nist.gov/pml/special-publication-811 (murojaat sanasi: 27.11.2026).",
+      "Python Software Foundation. Python 3.12 Documentation [Elektron resurs]. – URL: https://docs.python.org/3.12/ (murojaat sanasi: 27.11.2026).",
+      "Python Software Foundation. csv – CSV File Reading and Writing. Python 3.12 Documentation [Elektron resurs]. – URL: https://docs.python.org/3.12/library/csv.html (murojaat sanasi: 27.11.2026).",
+      "The Qt Company. Qt for Python (PySide6) Documentation [Elektron resurs]. – URL: https://doc.qt.io/qtforpython-6/ (murojaat sanasi: 27.11.2026).",
+      "The Qt Company. Qt 6 Documentation [Elektron resurs]. – URL: https://doc.qt.io/qt-6/ (murojaat sanasi: 27.11.2026).",
+      "PyInstaller Development Team. PyInstaller Manual [Elektron resurs]. – URL: https://pyinstaller.org/en/stable/ (murojaat sanasi: 27.11.2026).",
+      "Hakimov B. Birlik konvertori: dastur manba sahifasi [Elektron resurs]. – URL: https://github.com/eduhakimov/birlik-konvertori (murojaat sanasi: 27.11.2026)."
+    ]
+  },
+  "qollanma": {
+    "sarlavha": "Foydalanish qo‘llanmasi",
+    "bolimlar": [
+      {
+        "sarlavha": "Umumiy ma’lumot",
+        "matn": [
+          "“Birlik konvertori” o‘lchov birliklarini bir-biriga o‘tkazuvchi Windows dasturidir. Siz qiymatni bitta maydonga yozasiz, dastur esa natijani darhol tanlangan birlikda va shu kategoriyaning barcha boshqa birliklarida ko‘rsatadi.",
+          "Dasturda 12 ta kategoriya bor: uzunlik, maydon, hajm, massa, zichlik, bosim / kuchlanish, kuch, tezlik, burchak, harorat, energiya / quvvat va ma’lumot hajmi. Jami 70 ta birlik mavjud, jumladan sotix (100 m²), gektar, sentner, kgk/sm², tk/m² va nishablik foizi.",
+          "Bundan tashqari, dasturda armatura massasini hisoblash sahifasi va diametrlar bo‘yicha ma’lumotnoma jadvali, shuningdek hisob-kitoblar tarixini saqlash va CSV faylga eksport qilish imkoniyati bor.",
+          "Dastur quyidagi foydalanuvchilar uchun mo‘ljallangan:",
+          "- qurilish va loyihalash sohasidagi muhandis, texnik, prorab va smetachilar;",
+          "- texnik yo‘nalishdagi talabalar, o‘qituvchilar va o‘quvchilar;",
+          "- turli birliklardagi ma’lumotlar (bosim, harorat, maydon, ma’lumot hajmi) bilan ishlaydigan har qanday foydalanuvchi."
+        ]
+      },
+      {
+        "sarlavha": "Tizim talablari",
+        "matn": [
+          "- Operatsion tizim: Windows 10 (1809 versiyasi yoki undan keyingi) yoki Windows 11, 64 bitli (x64).",
+          "- Internet: shart emas. Dastur to‘liq oflayn ishlaydi va tarmoqqa hech qanday so‘rov yubormaydi.",
+          "- O‘rnatish: talab qilinmaydi. Dastur bitta BirlikKonvertori.exe faylidan iborat.",
+          "- Qo‘shimcha dasturlar: Python yoki boshqa kutubxonalarni o‘rnatish shart emas, kerakli barcha komponentlar exe fayl ichida.",
+          "- Disk: sozlamalar va tarix uchun foydalanuvchi profilida kichik hajmdagi fayllar yaratiladi."
+        ]
+      },
+      {
+        "sarlavha": "O‘rnatish va ishga tushirish",
+        "matn": [
+          "1. Brauzerda dasturning GitHub sahifasini oching: https://github.com/eduhakimov/birlik-konvertori va “Releases” bo‘limiga o‘ting.",
+          "2. Oxirgi versiyadagi BirlikKonvertori.exe faylini yuklab oling.",
+          "3. Faylni o‘zingizga qulay papkaga (masalan, “Hujjatlar” yoki ish stoliga) joylashtiring.",
+          "4. Faylni ikki marta bosib ishga tushiring. O‘rnatish oynasi chiqmaydi, dastur bevosita ochiladi.",
+          "5. Birinchi ishga tushirishda Windows SmartScreen “Windows kompyuteringizni himoya qildi” ogohlantirishini ko‘rsatishi mumkin. Bu dastur raqamli imzo bilan imzolanmaganligi bilan bog‘liq. Davom etish uchun “Batafsil” havolasini bosing, so‘ngra “Baribir ishga tushirish” tugmasini bosing.",
+          "Dastur standart holatda o‘zbek tilida ochiladi. Birinchi ochilishda “Konvertor” sahifasi, “Uzunlik” kategoriyasi va qiymat maydonida 1 soni ko‘rinadi."
+        ]
+      },
+      {
+        "sarlavha": "Dastur oynasi bilan tanishish",
+        "matn": [
+          "Dastur oynasi to‘rt qismdan iborat:",
+          "- **Menyu qatori** (yuqorida): “Fayl” (ichida “Chiqish”), “Sozlamalar” (“Til” va “Mavzu”), “Yordam” (“Qo‘llanma” va “Dastur haqida”).",
+          "- **Navigatsiya paneli** (chapda): “Konvertor”, “Armatura jadvali” va “Tarix” bo‘limlari. Kerakli bo‘limni bosish orqali sahifa almashtiriladi.",
+          "- **Ish maydoni** (o‘rtada): tanlangan sahifaning maydonlari, tugmalari va jadvallari.",
+          "- **Holat qatori** (pastda): “Tayyor”, “Nusxalandi” kabi qisqa xabarlar chiqadi.",
+          "“Konvertor” sahifasining yuqori qismida “Kategoriya”, “Qiymat”, “Aniqlik (xona)”, “Qaysi birlikdan”, “Qaysi birlikka” maydonlari va “Almashtirish” tugmasi joylashgan. Ularning ostida natija katta harflar bilan yoziladi, yonida “Natijani nusxalash” va “Tarixga saqlash” tugmalari bor. Pastda “Barcha birliklarda” jadvali “Birlik” va “Natija” ustunlari bilan ko‘rsatiladi.",
+          "“Armatura jadvali” sahifasida “Diametr, mm”, “Uzunlik, m”, “Soni, dona” maydonlari, “Umumiy massa” natijasi va “Ma’lumotnoma jadvali” joylashgan."
+        ],
+        "rasmlar": [
+          {"fayl": "docs/screenshots/1.png", "izoh": "Dastur oynasi, “Konvertor” sahifasi: yuqorida menyu, chapda navigatsiya paneli, o‘rtada kiritish maydonlari, natija va “Barcha birliklarda” jadvali"},
+          {"fayl": "docs/screenshots/2.png", "izoh": "“Armatura jadvali” sahifasi qorong‘i mavzuda: diametr, uzunlik va son maydonlari, umumiy massa va ma’lumotnoma jadvali"}
+        ]
+      },
+      {
+        "sarlavha": "Asosiy amallar",
+        "matn": [
+          "**Qiymatni boshqa birlikka o‘tkazish**",
+          "1. Chap paneldagi “Konvertor” bo‘limini tanlang.",
+          "2. “Kategoriya” ro‘yxatidan kerakli kattalikni tanlang, masalan, “Bosim / kuchlanish”.",
+          "3. “Qiymat” maydoniga son yozing. Kasr qismini nuqta yoki vergul bilan ajratish mumkin (1.5 yoki 1,5). Minglik guruhlar orasidagi bo‘sh joy e’tiborga olinmaydi.",
+          "4. “Qaysi birlikdan” ro‘yxatidan boshlang‘ich birlikni, “Qaysi birlikka” ro‘yxatidan esa kerakli birlikni tanlang.",
+          "5. Natija darhol katta harflar bilan ko‘rinadi. Alohida tugma bosish shart emas.",
+          "6. Qiymat shu kategoriyaning barcha birliklarida qanday bo‘lishini “Barcha birliklarda” jadvalidan ko‘ring.",
+          "Agar maydonga son bo‘lmagan matn yozilsa, natija o‘rnida “Son noto‘g‘ri kiritildi” xabari chiqadi va jadval bo‘shatiladi. Bu holda qiymatni to‘g‘rilang.",
+          "Natija bir vaqtning o‘zida ikki joyda ko‘rsatiladi. Katta yozuvda faqat “Qaysi birlikka” maydonida tanlangan birlikdagi natija va birlik nomi turadi. “Barcha birliklarda” jadvalida esa xuddi shu qiymat kategoriyadagi har bir birlikka o‘tkazilgan holda beriladi. Shuning uchun ko‘p hollarda maqsad birlikni tanlash shart ham emas: qiymatni yozib, jadvaldan kerakli qatorni topish kifoya. Jadval faqat o‘qish uchun, undagi qiymatlarni tahrirlab bo‘lmaydi.",
+          "Quyida kategoriyalar bo‘yicha amaliy misollar keltirilgan. Ularni dasturda takrorlab, ishlash tartibini mustahkamlashingiz mumkin:",
+          "- **Uzunlik:** 1 mil = 1,609344 km; 12 dyuym = 1 fut.",
+          "- **Maydon:** 1 gektar = 100 sotix; 1 sotix = 100 m².",
+          "- **Hajm:** 1 gallon (AQSh) = 3,785411784 litr.",
+          "- **Massa:** 1 tonna = 10 sentner; 1 funt = 16 unsiya.",
+          "- **Zichlik:** 2,4 t/m³ = 2400 kg/m³.",
+          "- **Bosim / kuchlanish:** 1 atmosfera = 760 mm simob ustuni; 1 kgk/sm² = 0,0980665 MPa.",
+          "- **Kuch:** 1 tonna-kuch = 9,80665 kN.",
+          "- **Tezlik:** 100 km/soat ≈ 27,78 m/s; 1 tugun = 1,852 km/soat.",
+          "- **Harorat:** 100 °C = 212 °F; 0 K = −273,15 °C.",
+          "- **Energiya / quvvat:** 1 kVt·soat ≈ 859,85 kkal.",
+          "- **Ma’lumot hajmi:** 1 GB = 1024 MB.",
+          "**Birliklar o‘rnini almashtirish**",
+          "1. “Almashtirish” tugmasini bosing.",
+          "2. “Qaysi birlikdan” va “Qaysi birlikka” maydonlaridagi birliklar o‘rin almashadi, natija yangidan hisoblanadi.",
+          "**Aniqlikni o‘zgartirish**",
+          "1. “Aniqlik (xona)” maydonidagi qiymatni 0 dan 12 gacha o‘zgartiring. Bu natijadagi kasr xonalari soni.",
+          "2. Ortiqcha nollar avtomatik olib tashlanadi. Juda katta yoki juda kichik sonlar ilmiy yozuvda (masalan, 6.213712e-07) ko‘rsatiladi.",
+          "3. Tanlangan aniqlik va oxirgi kategoriya eslab qolinadi va dastur keyingi safar ochilganda tiklanadi.",
+          "**Natijani nusxalash**",
+          "1. “Natijani nusxalash” tugmasini bosing.",
+          "2. Natijaning son qismi almashinuv buferiga olinadi, holat qatorida “Nusxalandi” yozuvi chiqadi.",
+          "3. Sonni Ctrl+V tugmalari yordamida boshqa dasturga qo‘ying.",
+          "**Nishablikni burchakka o‘tkazish**",
+          "1. “Kategoriya” ro‘yxatidan “Burchak”ni tanlang.",
+          "2. “Qaysi birlikdan” ro‘yxatidan “nishablik (%)”, “Qaysi birlikka” ro‘yxatidan “gradus (°)” ni tanlang.",
+          "3. Qiymatga nishablik foizini yozing. Masalan, 100 % nishablik 45° ga teng.",
+          "**Armatura massasini hisoblash**",
+          "1. Chap paneldagi “Armatura jadvali” bo‘limini tanlang.",
+          "2. “Diametr, mm” ro‘yxatidan diametrni tanlang (Ø6 dan Ø40 gacha).",
+          "3. “Uzunlik, m” maydoniga bitta sterjen uzunligini kiriting.",
+          "4. “Soni, dona” maydoniga sterjenlar sonini kiriting.",
+          "5. “Umumiy massa” qatorida natija kilogramm va qavs ichida tonnada ko‘rsatiladi.",
+          "6. “Ma’lumotnoma jadvali”dan har bir diametrning kesim yuzasi (mm²) va 1 metr massasini (kg) ko‘ring.",
+          "Hisob po‘latning 7850 kg/m³ zichligi bo‘yicha nazariy formula asosida bajariladi: 1 metr massasi π·d²/4·7850 ga teng, umumiy massa esa shu qiymatni uzunlik va songa ko‘paytirib topiladi. Natija maydonlardan biri o‘zgarishi bilan darhol yangilanadi. Uzunlik ikki kasr xonasigacha (masalan, 11,70 m), son esa 1 dan 1 000 000 donagacha kiritiladi.",
+          "Misol: Ø12 diametrli, 11,70 m uzunlikdagi bitta sterjenning massasi 10,387 kg (0,0104 t) ga teng. Agar sonni 100 dona qilsangiz, umumiy massa 1038,7 kg atrofida bo‘ladi. Shu tarzda buyurtma qilinadigan armatura tonnajini tezda baholash mumkin.",
+          "**Tarix bilan ishlash**",
+          "1. “Konvertor” sahifasida natija olingandan so‘ng “Tarixga saqlash” tugmasini bosing. Yozuv sana va vaqt bilan “Tarix” bo‘limiga qo‘shiladi, eng yangisi ro‘yxat boshida turadi.",
+          "2. Chap paneldagi “Tarix” bo‘limini oching va saqlangan yozuvlarni ko‘ring.",
+          "3. Tarixni faylga yozish uchun “CSV ga eksport” tugmasini bosing, papka va fayl nomini tanlang (standart holatda “Hujjatlar” papkasida tarix.csv) va saqlang.",
+          "4. Tarixni butunlay o‘chirish uchun “Tozalash” tugmasini bosing.",
+          "Tarix bo‘sh bo‘lsa, “Tarix bo‘sh” yozuvi ko‘rinadi va eksport hamda tozalash tugmalari faol bo‘lmaydi. Noto‘g‘ri qiymat tarixga saqlanmaydi.",
+          "Har bir tarix yozuvi quyidagi tartibda tuziladi: sana va vaqt (YYYY-MM-DD HH:MM), kiritilgan qiymat, boshlang‘ich birlik, tenglik belgisi va natija birligi bilan. CSV faylda har bir yozuv alohida qatorda joylashadi. Fayl UTF-8 kodlashida saqlanadi, shuning uchun o‘zbek, rus va ingliz harflari elektron jadvalda to‘g‘ri ko‘rinadi. Tozalash amali qaytarilmaydi, shuning uchun kerakli yozuvlarni oldindan eksport qilib qo‘ying.",
+          "**Dasturdan chiqish**",
+          "“Fayl” menyusidagi “Chiqish” bandini tanlang yoki oynani yopish tugmasini bosing. Oynaning o‘lchami va joylashuvi, tanlangan kategoriya, aniqlik va tarix avtomatik saqlanadi, alohida saqlash amali talab qilinmaydi."
+        ]
+      },
+      {
+        "sarlavha": "Sozlamalar",
+        "matn": [
+          "**Tilni almashtirish**",
+          "1. “Sozlamalar” menyusini oching va “Til” bandini tanlang.",
+          "2. O‘zbekcha, Русский yoki English variantlaridan birini bosing.",
+          "3. Dastur “Tilni o‘zgartirish uchun dastur qayta ishga tushiriladi. Davom etasizmi?” deb so‘raydi. Rozilik bersangiz, dastur yangi tilda qayta ochiladi.",
+          "**Mavzuni tanlash**",
+          "1. “Sozlamalar” menyusidan “Mavzu” bandini tanlang.",
+          "2. “Tizim bo‘yicha”, “Yorug‘” yoki “Qorong‘i” variantlaridan birini tanlang. Mavzu darhol qo‘llanadi va eslab qolinadi.",
+          "**Yordam**",
+          "“Yordam” menyusidagi “Qo‘llanma” bandi dastur ichidagi qisqa qo‘llanmani joriy tilda ochadi. “Dastur haqida” bandi versiya va muallif haqidagi ma’lumotni ko‘rsatadi."
+        ]
+      },
+      {
+        "sarlavha": "Ma’lumotlarni saqlash va xavfsizlik",
+        "matn": [
+          "- Dastur internetga ulanmaydi va hech qanday ma’lumotni tashqariga yubormaydi.",
+          "- Sozlamalar (til, mavzu, oxirgi kategoriya, aniqlik, oyna o‘lchami) va hisob-kitoblar tarixi %APPDATA%\\BahtiyorSoft\\birlik-konvertori papkasidagi settings.json faylida saqlanadi.",
+          "- Tarixda eng ko‘pi 500 ta oxirgi yozuv saqlanadi.",
+          "- Sozlamalar fayli xavfsiz usulda yoziladi: avval vaqtinchalik faylga yozilib, keyin almashtiriladi. Agar fayl buzilgan bo‘lsa, u .broken.json nomli zaxira faylga o‘zgartiriladi va dastur toza sozlamalar bilan ochiladi.",
+          "- Kutilmagan xatolar haqida ma’lumot shu papkadagi log.txt jurnal fayliga yoziladi.",
+          "- Dastur faqat siz “CSV ga eksport” orqali tanlagan joyga fayl yozadi. Boshqa fayllaringiz o‘qilmaydi va o‘zgartirilmaydi.",
+          "- Dasturni olib tashlash uchun BirlikKonvertori.exe faylini o‘chirish kifoya. Sozlamalarni ham tozalash uchun yuqoridagi papkani o‘chirish mumkin."
+        ]
+      },
+      {
+        "sarlavha": "Ko‘p uchraydigan savollar va muammolar",
+        "matn": [
+          "**Natija o‘rnida “Son noto‘g‘ri kiritildi” yozuvi chiqdi.** Qiymat maydonida harf yoki ortiqcha belgilar bo‘lishi mumkin. Faqat raqamlar, bitta kasr ajratgichi (nuqta yoki vergul) va kerak bo‘lsa minus ishorasini qoldiring. Juda katta qiymatlar ham rad etiladi.",
+          "**Natija 6.213712e-07 kabi ko‘rinishda chiqdi.** Bu ilmiy yozuv: 6,213712·10⁻⁷. Juda kichik yoki juda katta sonlar shu tarzda ko‘rsatiladi.",
+          "**Natija kerakli aniqlikda emas.** “Aniqlik (xona)” maydonidagi qiymatni oshiring.",
+          "**KB va MB nega 1000 emas, 1024 ga farq qiladi?** Dasturda ma’lumot hajmi birliklari ikkilik qadam bilan, ya’ni 1 KB = 1024 bayt deb hisoblanadi.",
+          "**Nishablik juda katta son ko‘rsatmoqda.** 90° ga yaqin burchaklarda nishablik foizi keskin ortadi. Bu matematik xususiyat, xato emas.",
+          "**CSV faylga eksport qilishda xato chiqdi.** “Faylni yozib bo‘lmadi. U boshqa dasturda ochiq bo‘lishi mumkin.” xabari faylning masalan elektron jadvalda ochiq turganini bildiradi. Faylni yoping yoki boshqa nom tanlang.",
+          "**“CSV ga eksport” tugmasi bosilmayapti.** Tarix bo‘sh bo‘lsa, bu tugma faol bo‘lmaydi. Avval “Konvertor” sahifasida “Tarixga saqlash” tugmasini bosing.",
+          "**Armatura massasi zavod ma’lumotlaridan biroz farq qiladi.** Dastur nazariy formula (7850 kg/m³ zichlik va doiraviy kesim) bo‘yicha hisoblaydi. Aniq qiymatlar uchun ishlab chiqaruvchi yoki standart ma’lumotlariga murojaat qiling.",
+          "**Windows dasturni ishga tushirishga ruxsat bermayapti.** SmartScreen oynasida “Batafsil” va “Baribir ishga tushirish” tugmalarini bosing.",
+          "**Dastur boshqa tilda ochildi.** “Sozlamalar” menyusidagi “Til” bandidan O‘zbekcha variantini tanlang va qayta ishga tushirishga rozilik bering.",
+          "**Kerakli birlik ro‘yxatda yo‘q.** Avval to‘g‘ri kategoriya tanlanganini tekshiring: masalan, kgk/sm² “Bosim / kuchlanish”, kgk esa “Kuch” kategoriyasida joylashgan. Ro‘yxatda bo‘lmagan birliklarni dasturga foydalanuvchi qo‘sha olmaydi.",
+          "**Kutilmagan xato oynasi chiqdi.** Xabarda ko‘rsatilgan log.txt jurnal fayli %APPDATA%\\BahtiyorSoft\\birlik-konvertori papkasida joylashgan. Muammo haqida xabar berishda shu fayl mazmunini ilova qiling."
+        ]
+      }
+    ]
+  },
+  "uslubiy": {
+    "sarlavha": "Uslubiy ko‘rsatma",
+    "bolimlar": [
+      {
+        "sarlavha": "Uslubiy ko‘rsatmaning maqsadi va vazifalari",
+        "matn": [
+          "Ushbu uslubiy ko‘rsatma “Birlik konvertori” dasturidan oliy ta’lim muassasalari, kollej va texnikumlarda o‘quv mashg‘ulotlarida hamda tashkilotlarda kasbiy faoliyatda foydalanishni tashkil etish bo‘yicha tavsiyalarni o‘z ichiga oladi.",
+          "Ko‘rsatmaning maqsadi talabalarda o‘lchov birliklari tizimini tushunish, birliklarni to‘g‘ri o‘tkazish va natijaning ishonchliligini tekshirish ko‘nikmalarini dasturiy vosita yordamida shakllantirishdir.",
+          "Vazifalar:",
+          "- talabalarni Xalqaro birliklar tizimi (SI) va amaliyotda qo‘llanadigan tizimdan tashqari birliklar (kgk/sm², tk/m², atmosfera, sotix, dyuym va boshqalar) o‘rtasidagi bog‘lanish bilan tanishtirish;",
+          "- chiziqli va chiziqli bo‘lmagan o‘tkazishlar (harorat shkalalari, nishablik va burchak) farqini ko‘rsatish;",
+          "- qurilish amaliyotidagi masalalarni (bosim, maydon, armatura massasi) yechishda dasturdan foydalanishni o‘rgatish;",
+          "- qo‘lda bajarilgan hisob natijasini dastur natijasi bilan solishtirish orqali o‘z-o‘zini nazorat qilish ko‘nikmasini rivojlantirish;",
+          "- hisob-kitoblarni hujjatlashtirish (tarix va CSV eksport) madaniyatini shakllantirish.",
+          "Ko‘rsatmada dasturning faqat haqiqatan mavjud imkoniyatlariga tayaniladi: 12 ta kategoriyadagi 70 ta birlik, qiymatni barcha birliklarda bir vaqtda ko‘rsatish, 0 dan 12 gacha aniqlikni sozlash, armatura massasi kalkulyatori va ma’lumotnoma jadvali, hisob-kitoblar tarixi va CSV eksport. Dastur internetsiz ishlagani va o‘rnatishni talab qilmagani uchun uni kompyuter sinflarida tarmoq sozlamalarisiz qo‘llash mumkin. Interfeysning o‘zbek, rus va ingliz tillarida mavjudligi turli ta’lim tilidagi guruhlarda bir xil topshiriqlardan foydalanishga imkon beradi.",
+          "Dastur hisoblashni o‘qituvchi va talaba o‘rniga bajaradigan “qora quti” sifatida emas, balki qo‘lda bajarilgan hisobni tekshirish va birliklar o‘rtasidagi munosabatni ko‘rgazmali ko‘rsatish vositasi sifatida qo‘llanishi tavsiya etiladi. Shu sababli amaliy topshiriqlarning aksariyatida avval qo‘lda hisoblash, so‘ngra natijani dastur bilan solishtirish talab etiladi."
+        ]
+      },
+      {
+        "sarlavha": "Qo‘llash sohasi va maqsadli auditoriya",
+        "matn": [
+          "Dasturdan quyidagi fanlar va kurslarda foydalanish tavsiya etiladi:",
+          "- fizika (o‘lchov birliklari, bosim, kuch, energiya, harorat mavzulari);",
+          "- metrologiya, standartlashtirish va sertifikatlashtirish;",
+          "- qurilish materiallari, temir-beton konstruksiyalar, qurilish texnologiyasi;",
+          "- qurilish smetasi va materiallar hisobi;",
+          "- yer tuzish va kadastr (sotix, gektar, akr bilan ishlash);",
+          "- informatika va axborot texnologiyalari (ma’lumot hajmi birliklari, CSV formati).",
+          "Maqsadli auditoriya: “Qurilish”, “Sanoat va fuqarolik qurilishi”, “Arxitektura”, “Muhandislik kommunikatsiyalari”, “Metrologiya” yo‘nalishlari talabalari, kollej va texnikumlarning texnik yo‘nalishdagi o‘quvchilari, shuningdek ularning o‘qituvchilari.",
+          "Dastur bilan ishlash uchun talabadan maxsus tayyorgarlik talab etilmaydi: kompyuterda oynalar, ro‘yxatlar va menyular bilan ishlash ko‘nikmasi yetarli. Shu bois uni birinchi kurs talabalari bilan ham, yuqori kurslarda konstruksiyalarni hisoblash fanlarida ham qo‘llash mumkin. Birinchi holatda asosiy e’tibor birliklar tizimining o‘ziga, ikkinchi holatda esa kasbiy masalalarni tezkor tekshirishga qaratiladi.",
+          "Kasbiy faoliyatda dastur loyiha va smeta hujjatlarini tayyorlovchi muhandislar, prorab va texnik nazorat mutaxassislari uchun me’yoriy hujjatlar va xorijiy kataloglardagi qiymatlarni tekshirish, armatura massasini tezkor baholash va bajarilgan hisoblarni qayd etish vositasi sifatida xizmat qilishi mumkin."
+        ]
+      },
+      {
+        "sarlavha": "O‘quv mashg‘ulotida foydalanish tartibi",
+        "matn": [
+          "Quyida “O‘lchov birliklari va ularni o‘tkazish” mavzusidagi 80 daqiqalik amaliy mashg‘ulot rejasi keltirilgan. Har bir talaba uchun Windows 10 yoki 11 o‘rnatilgan kompyuter va BirlikKonvertori.exe fayli oldindan tayyorlab qo‘yilishi kerak. Internet talab qilinmaydi.",
+          "1. **Tashkiliy qism (5 daqiqa).** Davomatni aniqlash, mashg‘ulot maqsadi va natijalarini e’lon qilish, kompyuterlarda dastur ishga tushishini tekshirish.",
+          "2. **Nazariy qism (20 daqiqa).** SI asosiy va hosilaviy birliklari, o‘nlik qo‘shimchalar (milli, santi, kilo, mega), tizimdan tashqari birliklar. Asosiy birlik va ko‘paytuvchi tushunchasi: ixtiyoriy ikki birlik orasidagi o‘tkazish asosiy birlik orqali bajarilishi. Chiziqli bo‘lmagan holatlar: harorat shkalalaridagi siljish, nishablik foizi va burchak orasidagi tangens bog‘lanishi. Armatura massasini π·d²/4·ρ·L formulasi bilan hisoblash.",
+          "3. **Dastur bilan tanishtirish (10 daqiqa).** O‘qituvchi proyektor orqali “Konvertor”, “Armatura jadvali” va “Tarix” bo‘limlarini, “Barcha birliklarda” jadvalini, “Aniqlik (xona)” maydonini va “Tarixga saqlash” tugmasini namoyish qiladi.",
+          "4. **Amaliy qism (35 daqiqa).** Talabalar “Amaliy topshiriqlar” bo‘limidagi topshiriqlarni bajaradi. Har bir topshiriqda avval qo‘lda (yoki kalkulyatorda) hisoblash, so‘ngra natijani dastur bilan tekshirish talab etiladi. Natijalar “Tarixga saqlash” orqali qayd etiladi.",
+          "5. **Yakuniy qism (10 daqiqa).** Talabalar tarixni CSV faylga eksport qilib, o‘qituvchiga topshiradi. Natijalar muhokama qilinadi, xatolar tahlil qilinadi, uyga vazifa beriladi.",
+          "Mashg‘ulotdan oldin o‘qituvchi dasturni o‘zi ishga tushirib, barcha kompyuterlarda o‘zbek tili tanlanganini tekshirishi, proyektor uchun esa “Sozlamalar” menyusidan yorug‘ mavzuni tanlashi tavsiya etiladi, chunki yorug‘ fonda jadval qatorlari katta ekranda aniqroq o‘qiladi. Guruhda turli tillarda tahsil oluvchi talabalar bo‘lsa, ular “Til” bandi orqali o‘zlariga qulay tilni tanlashlari mumkin; topshiriqlar va natijalar tildan qat’i nazar bir xil bo‘ladi."
+        ],
+        "rasmlar": [
+          {"fayl": "docs/screenshots/1.png", "izoh": "Mashg‘ulotda namoyish qilinadigan “Konvertor” sahifasi: tanlangan qiymat “Barcha birliklarda” jadvalida uzunlikning to‘qqizta birligida ko‘rsatilgan"}
+        ]
+      },
+      {
+        "sarlavha": "Amaliy topshiriqlar",
+        "matn": [
+          "1. **Bosim birliklari.** Beton sinfiga mos mustahkamlik 25 MPa deb olinsin. Uni kgk/sm² va tk/m² birliklariga qo‘lda o‘tkazing (1 kgk/sm² = 98066,5 Pa), so‘ngra “Bosim / kuchlanish” kategoriyasida tekshiring. Kutilgan natija: taxminan 254,93 kgk/sm² va 2549,3 tk/m²; “Barcha birliklarda” jadvalida qiymat bar, atm va psi da ham ko‘rinadi.",
+          "2. **Yer maydoni.** 0,12 gektar maydonni sotix va m² ga o‘tkazing. Kutilgan natija: 12 sotix, 1200 m². Qo‘shimcha ravishda 1 akrning necha sotix ekanini aniqlang (taxminan 40,47 sotix).",
+          "3. **Harorat shkalalari.** −40 °C, 0 °C va 100 °C qiymatlarini Farengeyt va Kelvin shkalasiga o‘tkazing. Kutilgan natija: −40 °F, 32 °F, 212 °F hamda 233,15 K, 273,15 K, 373,15 K. Talaba nega bu o‘tkazish oddiy ko‘paytirish bilan bajarilmasligini tushuntirsin.",
+          "4. **Nishablik va burchak.** Tom nishabligi 30° bo‘lsa, uning foizdagi qiymatini toping; rampa nishabligi 8 % bo‘lsa, burchagini toping. Kutilgan natija: 30° taxminan 57,74 % ga, 8 % taxminan 4,57° ga teng.",
+          "5. **Armatura massasi.** Ø16 diametrli, uzunligi 11,70 m bo‘lgan 50 dona sterjenning massasini qo‘lda (π·d²/4·7850·L·n) va dasturda hisoblang. Kutilgan natija: 1 metr massasi 1,578 kg, umumiy massa taxminan 923 kg (0,923 t). Natijani “Ma’lumotnoma jadvali” bilan solishtiring.",
+          "6. **Xorijiy o‘lchamlar.** Quvur diametri 3/4 dyuym (0,75 in) bo‘lsa, uni millimetrga o‘tkazing; 150 psi bosimni bar va MPa ga o‘tkazing. Kutilgan natija: 19,05 mm; taxminan 10,34 bar va 1,034 MPa.",
+          "7. **Ma’lumot hajmi.** 4,7 GB hajmni MB va KB ga o‘tkazing. Kutilgan natija: 4812,8 MB va 4 928 307,2 KB. Talaba dasturda 1 KB = 1024 bayt qabul qilinganini izohlasin.",
+          "8. **Hujjatlashtirish.** 1–7-topshiriqlar natijalarini “Tarixga saqlash” tugmasi bilan qayd eting, “Tarix” bo‘limidan “CSV ga eksport” orqali familiyangiz yozilgan faylga saqlang va faylni elektron jadvalda ochib tekshiring. Kutilgan natija: har bir yozuv sana, vaqt, boshlang‘ich qiymat va natija bilan alohida qatorda joylashgan CSV fayl."
+        ],
+        "rasmlar": [
+          {"fayl": "docs/screenshots/2.png", "izoh": "Armatura massasini hisoblash topshirig‘i uchun “Armatura jadvali” sahifasi: diametr, uzunlik va son maydonlari hamda ma’lumotnoma jadvali"}
+        ]
+      },
+      {
+        "sarlavha": "Baholash mezonlari",
+        "matn": [
+          "Amaliy mashg‘ulot natijasi 100 ball tizimida baholanadi. Ballar quyidagicha taqsimlanadi:",
+          "- 1–7-topshiriqlarning to‘g‘ri bajarilishi: har biri 8 balldan, jami 56 ball (qo‘lda hisoblash uchun 4 ball, dastur bilan tekshirish va mos kelishini izohlash uchun 4 ball);",
+          "- 8-topshiriq (tarix va CSV fayl to‘g‘ri tuzilgani): 10 ball;",
+          "- chiziqli va chiziqli bo‘lmagan o‘tkazishlar farqini og‘zaki yoki yozma tushuntirish (3- va 4-topshiriqlar asosida): 14 ball;",
+          "- nazorat savollariga javoblar: 15 ball;",
+          "- ish madaniyati, vaqtga rioya qilish va natijalarni aniq rasmiylashtirish: 5 ball.",
+          "Yakuniy baho: 86–100 ball “a’lo”, 71–85 ball “yaxshi”, 56–70 ball “qoniqarli”, 55 ball va undan kam “qoniqarsiz”. Ta’lim muassasasida boshqa baholash shkalasi qabul qilingan bo‘lsa, ballar mutanosib ravishda qayta hisoblanadi."
+        ]
+      },
+      {
+        "sarlavha": "Nazorat savollari",
+        "matn": [
+          "1. Asosiy birlik va ko‘paytuvchi tushunchalarini tushuntiring. Ixtiyoriy ikki birlik orasidagi o‘tkazish qanday bajariladi?",
+          "2. Nima uchun harorat shkalalari orasidagi o‘tkazishni bitta ko‘paytuvchi bilan ifodalab bo‘lmaydi?",
+          "3. Nishablik foizi va burchak gradusi qanday formula bilan bog‘langan? 100 % nishablik necha gradusga teng?",
+          "4. 1 kgk/sm², 1 atm va 1 bar orasidagi farqni ko‘rsating.",
+          "5. Sotix va gektar qanday bog‘langan? 1 gektarda necha sotix bor?",
+          "6. Armatura 1 metrining massasi qanday formula bilan hisoblanadi? Formulada qaysi zichlik qiymati ishlatiladi?",
+          "7. Nima uchun dasturdagi armatura massasi nazariy qiymat hisoblanadi?",
+          "8. Dasturda 1 KB necha baytga teng deb olingan va bu o‘nlik qo‘shimchalardan qanday farq qiladi?",
+          "9. Ilmiy yozuvdagi 6.213712e-07 soni nimani bildiradi?",
+          "10. Hisob-kitoblarni tarixga saqlash va CSV faylga eksport qilish kasbiy faoliyatda qanday ahamiyatga ega?"
+        ]
+      },
+      {
+        "sarlavha": "Mustaqil ish uchun tavsiyalar",
+        "matn": [
+          "- O‘z mutaxassisligingizga oid me’yoriy hujjat yoki texnik katalogdan turli birliklarda berilgan 10 ta qiymatni toping, ularni SI birliklariga o‘tkazing va natijani dastur yordamida tekshiring.",
+          "- Kichik qurilish obyekti (masalan, poydevor yoki ustun) uchun armatura spetsifikatsiyasini tuzing: har bir diametr bo‘yicha uzunlik va sonni aniqlab, umumiy massani dasturda hisoblang.",
+          "- Harorat, bosim va energiya kategoriyalarida bir nechta qiymat uchun “borib-qaytish” tajribasini o‘tkazing: qiymatni bir birlikdan ikkinchisiga, so‘ngra yana dastlabkisiga o‘tkazib, natija tiklanishini kuzating.",
+          "- “Aniqlik (xona)” qiymatini o‘zgartirib, yaxlitlashning natijaga ta’sirini tahlil qiling va qaysi masalada necha kasr xonasi yetarli ekanini asoslang.",
+          "- Bajarilgan ishlarni tarixga saqlang va CSV faylni elektron jadvalda ochib, qisqa hisobot tayyorlang.",
+          "- Ma’lumot hajmi kategoriyasida 1 GB ni bayt va MB ga o‘tkazing, natijani saqlash qurilmalari qadoqlarida ko‘rsatilgan o‘nlik (1000 lik) qiymatlar bilan taqqoslang va farqning sababini yozma izohlang.",
+          "- Kuch va bosim kategoriyalari orasidagi bog‘lanishni o‘rganing: 1 tk kuch 1 m² yuzaga ta’sir qilganda bosim 1 tk/m² ekanini, shuningdek 1 MPa = 1 N/mm² ekanini dastur yordamida tekshiring.",
+          "Mustaqil ish natijalari yozma hisobot shaklida topshiriladi. Hisobotda masala sharti, qo‘lda bajarilgan hisob, dastur natijasi, ular orasidagi farq (bo‘lsa) va uning sababi, shuningdek CSV fayldan ko‘chirma keltirilishi tavsiya etiladi. O‘qituvchi hisobotni baholashda nafaqat son natijaning to‘g‘riligiga, balki birliklar yozilishining aniqligiga va xulosalarning asoslanganligiga ham e’tibor beradi."
+        ]
+      },
+      {
+        "sarlavha": "Xavfsizlik va axborot madaniyati qoidalari",
+        "matn": [
+          "- Dasturni faqat uning rasmiy GitHub sahifasidagi “Releases” bo‘limidan yuklab oling. Noma’lum manbalardan olingan exe fayllarni ishga tushirmang.",
+          "- SmartScreen ogohlantirishini faqat fayl rasmiy manbadan olinganiga ishonch hosil qilgandan keyin chetlab o‘ting.",
+          "- Dastur natijasini javobgarlik yuqori bo‘lgan hujjatlarga (loyiha, smeta, dalolatnoma) kiritishdan oldin qo‘lda yoki boshqa manba bilan tekshiring. Armatura massasi nazariy qiymat ekanini yodda tuting.",
+          "- CSV faylni eksport qilishda fayl nomini aniq va tushunarli tanlang, ish natijalarini tartibli papkalarda saqlang.",
+          "- Umumiy foydalanishdagi kompyuterlarda ishni tugatgach tarixni “Tozalash” tugmasi bilan o‘chiring, agar u boshqalar ko‘rishi kerak bo‘lmagan ma’lumotlarni o‘z ichiga olsa.",
+          "- Kompyuter sinfida ishlashda texnika xavfsizligi qoidalariga rioya qiling: elektr jihozlariga ruxsatsiz tegmang, ish joyini toza saqlang, ko‘z charchashining oldini olish uchun tanaffuslar qiling.",
+          "- Boshqalarning hisob-kitob fayllarini ruxsatsiz nusxalamang va o‘z nomingizdan topshirmang."
+        ]
+      }
+    ]
+  }
+}
